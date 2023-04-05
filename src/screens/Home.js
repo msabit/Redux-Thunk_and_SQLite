@@ -31,7 +31,7 @@ export default function Home({ navigation, route }) {
     // const [age, setAge] = useState('');
 
     useEffect(() => {
-        getData();
+       // getData();
     }, []);
 
     const getData = () => {
@@ -98,12 +98,12 @@ export default function Home({ navigation, route }) {
 
     return (
         <View style={styles.body}>
-            <Text style={[
+            {/* <Text style={[
                 GlobalStyle.CustomFont,
                 styles.text
             ]}>
                 Welcome{"\n"} { name} !
-            </Text>
+            </Text> */}
             <Text style={[
                 GlobalStyle.CustomFont,
                 styles.text
@@ -116,7 +116,7 @@ export default function Home({ navigation, route }) {
                 value={name}
                 onChangeText={(value) => dispatch(setName(value))}
             />
-            <CustomButton
+            {/* <CustomButton
                 title='Update'
                 color='lightblue'
                 onPressFunction={updateData}
@@ -125,7 +125,7 @@ export default function Home({ navigation, route }) {
                 title='Remove'
                 color='lightblue'
                 onPressFunction={removeData}
-            />
+            /> */}
             <CustomButton
                 title='Increase Age'
                 color='lightblue'

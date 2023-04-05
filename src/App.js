@@ -1,10 +1,10 @@
 
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-//import { createStackNavigator } from '@react-navigation/native-stack';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './screens/Home';
 import Login from './screens/Login';
+import PracticeScreen from './screens/PracticeScreen';
 import { Provider } from 'react-redux';
 import { Store } from './redux/store';
 
@@ -19,12 +19,12 @@ function App() {
           screenOptions={{
             headerTitleAlign: 'center',
             headerStyle: {
-              backgroundColor: '#0080ff'
+              backgroundColor: '#fff'
             },
-            headerTintColor: '#ffffff',
+            headerTintColor: '#000',
             headerTitleStyle: {
-              fontSize: 25,
-              fontWeight: 'bold'
+              fontSize: 20,
+             // fontWeight: 'bold'
             }
           }}
         >
@@ -38,6 +38,10 @@ function App() {
           <Stack.Screen
             name="Home"
             component={Home}
+          />
+          <Stack.Screen
+            name="PracticeScreen"
+            component={PracticeScreen}
           />
         </Stack.Navigator>
       </NavigationContainer>

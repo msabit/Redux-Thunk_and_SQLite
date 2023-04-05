@@ -6,6 +6,7 @@ import {
     Text,
     TextInput,
     Alert,
+    SafeAreaView,
 } from 'react-native';
 import CustomButton from '../utils/CustomButton';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -31,75 +32,70 @@ export default function Login({ navigation }) {
     // const [age, setAge] = useState('');
 
     useEffect(() => {
-        createTable();
-        getData();
+        // createTable();
+        // getData();
     }, []);
 
-    const createTable = () => {
-        db.transaction((tx) => {
-            tx.executeSql(
-                "CREATE TABLE IF NOT EXISTS "
-                + "Users "
-                + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, Age INTEGER);"
-            )
-        })
-    }
+    // const createTable = () => {
+    //     db.transaction((tx) => {
+    //         tx.executeSql(
+    //             "CREATE TABLE IF NOT EXISTS "
+    //             + "Users "
+    //             + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, Age INTEGER);"
+    //         )
+    //     })
+    // }
 
-    const getData = () => {
-        try {
-            // AsyncStorage.getItem('UserData')
-            //     .then(value => {
-            //         if (value != null) {
-            //             navigation.navigate('Home');
-            //         }
-            //     })
-            db.transaction((tx) => {
-                tx.executeSql(
-                    "SELECT Name, Age FROM Users",
-                    [],
-                    (tx, results) => {
-                        var len = results.rows.length;
-                        if (len > 0) {
-                            navigation.navigate('Home');
-                        }
-                    }
-                )
-            })
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    // const getData = () => {
+    //     try {
+           
+    //         db.transaction((tx) => {
+    //             tx.executeSql(
+    //                 "SELECT Name, Age FROM Users",
+    //                 [],
+    //                 (tx, results) => {
+    //                     var len = results.rows.length;
+    //                     if (len > 0) {
+    //                         navigation.navigate('Home');
+    //                     }
+    //                 }
+    //             )
+    //         })
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
 
-    const setData = async () => {
-        if (name.length == 0 || age.length == 0) {
-            Alert.alert('Warning!', 'Please write your data.')
-        } else {
-            try {
-                dispatch(setName(name));
-                dispatch(setAge(age));
-                // var user = {
-                //     Name: name,
-                //     Age: age
-                // }
-                // await AsyncStorage.setItem('UserData', JSON.stringify(user));
-                await db.transaction(async (tx) => {
-                    // await tx.executeSql(
-                    //     "INSERT INTO Users (Name, Age) VALUES ('" + name + "'," + age + ")"
-                    // );
-                    await tx.executeSql(
-                        "INSERT INTO Users (Name, Age) VALUES (?,?)",
-                        [name, age]
-                    );
-                })
-                navigation.navigate('Home');
-            } catch (error) {
-                console.log(error);
-            }
-        }
-    }
+    // const setData = async () => {
+    //     if (name.length == 0 || age.length == 0) {
+    //         Alert.alert('Warning!', 'Please write your data.')
+    //     } else {
+    //         try {
+    //             dispatch(setName(name));
+    //             dispatch(setAge(age));
+    //             // var user = {
+    //             //     Name: name,
+    //             //     Age: age
+    //             // }
+    //             // await AsyncStorage.setItem('UserData', JSON.stringify(user));
+    //             await db.transaction(async (tx) => {
+    //                 // await tx.executeSql(
+    //                 //     "INSERT INTO Users (Name, Age) VALUES ('" + name + "'," + age + ")"
+    //                 // );
+    //                 await tx.executeSql(
+    //                     "INSERT INTO Users (Name, Age) VALUES (?,?)",
+    //                     [name, age]
+    //                 );
+    //             })
+    //             navigation.navigate('Home');
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     }
+    // }
 
     return (
-        <View style={styles.body} >
+        <SafeAreaView style={styles.body} >
             {/* <Image
                 style={styles.logo}
                 source={require('../../assets/redux.png')}
@@ -110,21 +106,26 @@ export default function Login({ navigation }) {
             <TextInput
                 style={styles.input}
                 placeholder='Enter your name'
-                value={name?name:''}
+                value={name}
                 onChangeText={(value) => dispatch(setName(value))}
             />
             <TextInput
                 style={styles.input}
                 placeholder='Enter your age'
-                value={age?age:''}
+                //value={age}
                 onChangeText={(value) => dispatch(setAge(value))}
             />
             <CustomButton
                 title='Login'
                 color='lightblue'
-                onPressFunction={setData}
+                onPressFunction={()=>navigation.navigate('Home')}
+            /> 
+            <CustomButton
+                title='Get Api'
+                color='lightblue'
+                onPressFunction={()=>navigation.navigate('PracticeScreen')}
             />
-        </View>
+        </SafeAreaView>
     )
 }
 
@@ -133,6 +134,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         backgroundColor: '#fff',
+        justifyContent:'center'
     },
     logo: {
         width: 150,

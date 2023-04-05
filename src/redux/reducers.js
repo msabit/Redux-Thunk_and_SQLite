@@ -1,8 +1,9 @@
-import { SET_USER_NAME, SET_USER_AGE, INCREASE_AGE } from './actions';
+import { SET_USER_NAME, SET_USER_AGE, INCREASE_AGE,GET_LIST } from './actions';
 
 const initialState = {
     name: '',
     age: 0,
+    list:[]
 }
 
 function userReducer(state = initialState, action) {
@@ -13,6 +14,8 @@ function userReducer(state = initialState, action) {
             return { ...state, age: action.payload };
         case INCREASE_AGE:
             return { ...state, age: state.age + 1 };
+        case GET_LIST:
+            return { ...state, list: action.payload };
         default:
             return state;
     }
