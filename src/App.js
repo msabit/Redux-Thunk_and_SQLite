@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './screens/Home';
 import Login from './screens/Login';
 import PracticeScreen from './screens/PracticeScreen';
+import BridgingScreen from './screens/BridgingScreen';
 import { Provider } from 'react-redux';
 import { Store } from './redux/store';
 
@@ -42,6 +43,10 @@ function App() {
           <Stack.Screen
             name="PracticeScreen"
             component={PracticeScreen}
+          />
+          <Stack.Screen
+            name="BridgingScreen"
+            component={BridgingScreen}
           />
         </Stack.Navigator>
       </NavigationContainer>

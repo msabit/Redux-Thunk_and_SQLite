@@ -125,6 +125,11 @@ export default function Login({ navigation }) {
                 color='lightblue'
                 onPressFunction={()=>navigation.navigate('PracticeScreen')}
             />
+            <CustomButton
+                title='Bridging'
+                color='lightblue'
+                onPressFunction={()=>navigation.navigate('BridgingScreen')}
+            />
         </SafeAreaView>
     )
 }
